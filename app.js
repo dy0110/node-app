@@ -15,13 +15,18 @@ console.log('Server Start!')
 
 //createserver
 function getFromClient(request,response){
-    var url_parts = url.parse(request.url)
+    var url_parts = url.parse(request.url,true)
     switch (url_parts.pathname) {
 
         case '/':
+             var content = "これはIndexページです。"
+             var query =url_parts.query
+             if(query.msg != undefined){
+                 var query_obj = content += 'あなたは、「'+query.msg+'」と送りました。'
+             }
              var content = ejs.render(index_page,{
-             title:"Indexページ",
-             content:"これはテンプレートを使ったサンプルページです"
+             title:"Index",
+             content:content
             })
             response.writeHead(200,{'Content-Type':'text/html'})
             response.write(content)
