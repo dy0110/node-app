@@ -40,19 +40,19 @@ function getFromClient(request,response){
 
     }
 
+    var data = {
+        'Taro':['taro@yamada','09-999-999','Tokyo'],
+        'Hanako':['hanako@flower','080-888-888','Yokohama'],
+        'Sachiko':['sachiko@happy','070-777-777','Nagoya'],
+        'Ichiro':['ichi@baseball','060-666-666','Newyork']
+    }
+
     //index.ejsの処理
     function response_index( request,response ){
         var msg = "これはIndexページです。"
         var content = ejs.render(index_page,{
             title:"Index",
-            content:msg,
-            data:{
-                //データ用変数
-                'Taro':'09-999-999',
-                'Hanako':'080-888-888',
-                'Sachiko':'070-777-777',
-                'Ichiro':'060-666-666'
-            }
+            content:msg
         })
         response.writeHead(200,{'Content-Type':'text/html'})
         response.write(content)
@@ -77,7 +77,9 @@ function getFromClient(request,response){
                 msg += 'あなたは、「' + post_data.msg + '」と書きました。'
                 var content = ejs.render(other_page,{
                     title:"Other",
-                    content:msg
+                    content:msg,
+                    data:data,
+                    filename:'data_item'
                 })
                 response.writeHead(200,{'Content-Type':'text/html'})
                 response.write(content)

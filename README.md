@@ -1,8 +1,8 @@
 # node-app
 Node.js
 
-v0: ejsテンプレートを使ったサンプルページです
+ejsテンプレートを使ったサンプルページです
 
-v1: クエリーパラメーターを表示します
+index.ejsの入力値をother.ejsで表示する
 
-v2: index.ejsの入力値をother.ejsで表示する
+data_item.ejsをincludeして表示する
