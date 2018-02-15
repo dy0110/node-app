@@ -6,3 +6,5 @@ ejsテンプレートを使ったサンプルページです
 index.ejsの入力値をother.ejsで表示する
 
 data_item.ejsをincludeして表示する
+
+伝言ページの作成

@@ -11,12 +11,15 @@
     </head>
     <div role="main">
         <p><%=content %></p>
-        <form method="post" action="other">
-            <p>
-                <input type="text" name="msg">
-                <input type="submit" value="Click">
-            </p>
-        </form>
+        <p>
+            <table style="width:400px;">
+                <tr><th>伝言です！</th></tr>
+                <tr><td><%=data.msg %></td></tr>
+            </table>
+        </p>
+        <form method="post" action="/">
+            MESSEAGE <input type="text" name="msg">
+            <input type="submit" value="送信">
     </div>
 </body>
 </html>

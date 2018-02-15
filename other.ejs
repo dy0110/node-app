@@ -12,7 +12,6 @@
         <h1><%=title %></h1>
     </head>
     <div role="main">
-        <p><%=content %></p>
         <p><table>
             <% for(var key in data) {%>
                 <%- include('data_item',{key:key,val:data[key]}) %>
