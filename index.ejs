@@ -14,9 +14,10 @@
         <p>
             <table style="width:400px;">
                 <tr><th>伝言です！</th></tr>
-                <tr><td><%=data.msg %></td></tr>
+                <tr><td><%=data %></td></tr>
             </table>
         </p>
+        <p>your last message:<%=cookie_data %></p>
         <form method="post" action="/">
             MESSEAGE <input type="text" name="msg">
             <input type="submit" value="送信">

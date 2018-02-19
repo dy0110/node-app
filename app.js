@@ -53,7 +53,7 @@ function getFromClient(request,response){
     function response_index( request,response ){
         //POSTアクセス時の処理
         if(request.method == 'POST'){
-            console.log("POST")
+            console.log("response_index:POST")
             var body = '';
 
             //データ受信イベント処理
@@ -64,13 +64,20 @@ function getFromClient(request,response){
 
             //データ受信終了時のイベント処理
             request.on('end',()=>{
-                data.msg = qs.parse(body)
+                var data = qs.parse(body)
+                var cookie = request.headers.cookie
+                console.log(cookie)
+                var dat_text = data.msg
                 console.log(data.msg)
+                response.setHeader('Set-Cookie',['msg='+escape(data.msg)])
+                var cookie_text = unescape(cookie)
+                var cookie_data = cookie_text.substring(4);
                 var msg = "※伝言を表示します"
                 var content = ejs.render(index_page,{
                     title:"Index",
                     content:msg,
-                    data:data.msg
+                    data:data.msg,
+                    cookie_data:cookie_data
                 })
                 response.writeHead(200,{'Content-Type':'text/html'})
                 response.write(content)
@@ -78,11 +85,14 @@ function getFromClient(request,response){
             })
         } else {
             var msg = "※伝言を表示します"
+            var data = {msg:'no message....'}
             var content = ejs.render(index_page,{
                 title:"Index",
                 content:msg,
-                data:{msg:'no message....'}
+                data:data.msg,
+                cookie_data:""
             })
+            response.setHeader('Set-Cookie',['msg='+data.msg])
             response.writeHead(200,{'Content-Type':'text/html'})
             response.write(content)
             response.end()
@@ -107,5 +117,5 @@ function getFromClient(request,response){
         response.write(content)
         response.end()
     }
-    
+
 }
